@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Heloise Lavender Game</title>
+
+    <style>
+
+        body {
+            background-color: #E6E6FA;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding-top: 50px;
+        }
+
+        .game {
+            background-color: white;
+            width: 550px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0px 0px 25px #B19CD9;
+        }
+
+        h1 {
+            color: #7B5CB8;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #8A70B8;
+            font-size: 17px;
+        }
+
+        .flowers {
+            font-size: 30px;
+            margin: 15px;
+        }
+
+        .about {
+            background-color: #F3EFFF;
+            padding: 15px;
+            border-radius: 15px;
+            color: #604080;
+            margin-top: 25px;
+        }
+
+        #question {
+            font-size: 21px;
+            font-weight: bold;
+            color: #604080;
+            margin-top: 35px;
+        }
+
+        input {
+            width: 300px;
+            padding: 12px;
+            border: 2px solid #B19CD9;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #8A2BE2;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 15px;
+            background-color: #9370DB;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7B68EE;
+        }
+
+        #skipButton {
+            background-color: #C8B6E2;
+            margin-left: 10px;
+        }
+
+        #skipButton:hover {
+            background-color: #B19CD9;
+        }
+
+        #message {
+            font-size: 18px;
+            font-weight: bold;
+            color: #8A2BE2;
+            min-height: 25px;
+        }
+
+        #score {
+            font-size: 18px;
+            font-weight: bold;
+            color: #6A5ACD;
+            margin-top: 25px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="game">
+
+    <div class="flowers">
+        🌸 💜 🌸 💜 🌸
+    </div>
+
+    <h1>Heloise's Lavender Game</h1>
+
+    <p class="subtitle">
+        How well do you actually know me? 👀
+    </p>
+
+    <div class="about">
+
+        <b>About Me</b>
+
+        <br><br>
+
+        I like digital art, drawing, and sketching! 🎨
+
+    </div>
+
+
+    <p id="question"></p>
+
+
+    <input
+        type="text"
+        id="answer"
+        placeholder="Type your answer..."
+    >
+
+
+    <br>
+
+
+    <button onclick="checkAnswer()">
+        Answer 💜
+    </button>
+
+
+    <button
+        id="skipButton"
+        onclick="tryToSkip()">
+        Skip 😭
+    </button>
+
+
+    <p id="message"></p>
+
+
+    <p id="score">
+        Score: 0
+    </p>
+
+
+    <div class="flowers">
+        🌿 🌸 🌿 🌸 🌿
+    </div>
+
+</div>
+
+
+<script>
+
+
+let score = 0;
+
+let questionNumber = 0;
+
+let skipAttempts = 0;
+
+
+/*
+    QUESTIONS
+*/
+
+const questions = [
+
+    {
+        question: "What is my favorite color?",
+
+        answers: [
+            "lavender",
+            "purple",
+            "light purple"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What do I like to do?",
+
+        answers: [
+            "art",
+            "arts",
+            "drawing",
+            "draw",
+            "sketch",
+            "sketching",
+            "sketchbook",
+            "digital art",
+            "digital drawing",
+            "digital arts"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What is my name?",
+
+        answers: [
+            "heloise",
+            "heloise xylia",
+            "heloise xylia limbona"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What is my favorite food?",
+
+        answers: [
+            "takoyaki",
+            "sinigang",
+            "miso soup",
+            "miso",
+            "takoyaki balls"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "Where do I live?",
+
+        answers: [
+            "philippines"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What kind of art do I like?",
+
+        answers: [
+            "digital art",
+            "digital drawing",
+            "drawing",
+            "sketch",
+            "sketching",
+            "digital arts"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What do I like to draw in?",
+
+        answers: [
+            "sketchbook",
+            "drawing book",
+            "notebook",
+            "digital"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What is the theme of this game?",
+
+        answers: [
+            "lavender",
+            "purple",
+            "lavender theme",
+            "purple theme"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "Do you think you know me?",
+
+        answers: [
+            "yes",
+            "yeah",
+            "yep",
+            "of course",
+            "i do"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "What flower matches this game's theme?",
+
+        answers: [
+            "wisteria",
+            "lavender"
+        ],
+
+        canSkip: false
+    },
+
+
+    {
+        question: "Who is my ex? 👀",
+
+        answers: [
+            "classified",
+            "secret",
+            "idk",
+            "i don't know",
+            "none of your business"
+        ],
+
+        canSkip: true
+    },
+
+
+    {
+        question: "How many exes do I have? 😭",
+
+        answers: [
+            "3",
+            "three"
+        ],
+
+        canSkip: false
+    }
+
+];
+
+
+
+/*
+    SHUFFLE QUESTIONS
+*/
+
+function shuffleQuestions() {
+
+    for (
+        let i = questions.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        let j =
+            Math.floor(Math.random() * (i + 1));
+
+
+        let temporary =
+            questions[i];
+
+
+        questions[i] =
+            questions[j];
+
+
+        questions[j] =
+            temporary;
+
+    }
+
+}
+
+
+
+/*
+    SHOW QUESTION
+*/
+
+function showQuestion() {
+
+    document.getElementById("question").innerText =
+        questions[questionNumber].question;
+
+}
+
+
+
+/*
+    CHECK ANSWER
+*/
+
+function checkAnswer() {
+
+    let answer =
+        document.getElementById("answer").value
+        .trim()
+        .toLowerCase();
+
+
+    if (answer === "") {
+
+        document.getElementById("message").innerText =
+            "You gotta answer first! 😭💜";
+
+        return;
+
+    }
+
+
+    let correct = false;
+
+
+    /*
+        Check all possible answers
+    */
+
+    for (
+        let i = 0;
+        i < questions[questionNumber].answers.length;
+        i++
+    ) {
+
+        let possibleAnswer =
+            questions[questionNumber].answers[i]
+            .toLowerCase();
+
+
+        if (
+            answer.includes(possibleAnswer)
+            ||
+            possibleAnswer.includes(answer)
+        ) {
+
+            correct = true;
+
+            break;
+
+        }
+
+    }
+
+
+
+    /*
+        CORRECT
+    */
+
+    if (correct) {
+
+        score++;
+
+        skipAttempts = 0;
+
+
+        document.getElementById("message").innerText =
+            "CORRECT!! 💜✨";
+
+
+        document.getElementById("score").innerText =
+            "Score: " + score;
+
+
+        /*
+            5 CORRECT
+        */
+
+        if (score === 5) {
+
+            alert(
+                "WOWWW!! 🌸💜\n\n" +
+                "YOU GOT 5 CORRECT!!\n\n" +
+                "You actually know Heloise! 😂"
+            );
+
+        }
+
+
+        questionNumber++;
+
+
+        /*
+            FINISHED ALL QUESTIONS
+        */
+
+        if (questionNumber >= questions.length) {
+
+            alert(
+                "YOU FINISHED THE WHOLE QUIZ! 🌸💜\n\n" +
+                "Final Score: " +
+                score +
+                "/" +
+                questions.length
+            );
+
+
+            score = 0;
+
+            questionNumber = 0;
+
+            shuffleQuestions();
+
+
+            document.getElementById("score").innerText =
+                "Score: 0";
+
+
+            document.getElementById("message").innerText =
+                "NEW ROUND! 🌸💜";
+
+        }
+
+
+        showQuestion();
+
+
+        document.getElementById("answer").value = "";
+
+    }
+
+
+    /*
+        WRONG ANSWER
+    */
+
+    else {
+
+        document.getElementById("message").innerText =
+            "Hmmmm... not quite! 😭💜 Try again!";
+
+    }
+
+}
+
+
+
+/*
+    GOOFY SKIP BUTTON
+*/
+
+function tryToSkip() {
+
+    /*
+        ONLY THE EX QUESTION
+        CAN ACTUALLY BE SKIPPED
+    */
+
+    if (questions[questionNumber].canSkip === true) {
+
+        document.getElementById("message").innerText =
+            "FINALLY! A QUESTION YOU'RE ALLOWED TO ESCAPE 😭💜";
+
+
+        questionNumber++;
+
+        skipAttempts = 0;
+
+
+        if (questionNumber >= questions.length) {
+
+            questionNumber = 0;
+
+            shuffleQuestions();
+
+        }
+
+
+        showQuestion();
+
+
+        document.getElementById("answer").value = "";
+
+
+        return;
+
+    }
+
+
+
+    /*
+        NORMAL QUESTIONS
+        CANNOT BE SKIPPED
+    */
+
+    skipAttempts++;
+
+
+    if (skipAttempts === 1) {
+
+        document.getElementById("message").innerText =
+            "Nice try. 😭 You cannot escape.";
+
+    }
+
+
+    else if (skipAttempts === 2) {
+
+        document.getElementById("message").innerText =
+            "BRO REALLY CLICKED SKIP AGAIN 💀";
+
+    }
+
+
+    else if (skipAttempts === 3) {
+
+        document.getElementById("message").innerText =
+            "The SKIP button is literally decorative. 💜🌸";
+
+    }
+
+
+    else if (skipAttempts === 4) {
+
+        document.getElementById("message").innerText =
+            "STOP CLICKING IT 😭😭";
+
+    }
+
+
+    else if (skipAttempts === 5) {
+
+        document.getElementById("message").innerText =
+            "Fine. You can skip... SIKE. 😂💜";
+
+    }
+
+
+    else {
+
+        document.getElementById("message").innerText =
+            "NOPE. STILL NOT SKIPPING. 🌸💀";
+
+    }
+
+}
+
+
+
+/*
+    PRESS ENTER TO ANSWER
+*/
+
+document.getElementById("answer").addEventListener(
+
+    "keypress",
+
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            checkAnswer();
+
+        }
+
+    }
+
+);
+
+
+
+/*
+    START GAME
+*/
+
+shuffleQuestions();
+
+showQuestion();
+
+
+</script>
+
+
+</body>
+
+</html>
