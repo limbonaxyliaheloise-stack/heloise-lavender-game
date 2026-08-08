@@ -1,114 +1,149 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Heloise Lavender Game</title>
+<title>Heloise's Lavender Game 💜</title>
 
-    <style>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            background-color: #E6E6FA;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding-top: 50px;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 15px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e6d5ff, #f7eaff, #d8b4fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4b2673;
+}
 
-        .game {
-            background-color: white;
-            width: 550px;
-            margin: auto;
-            padding: 35px;
-            border-radius: 25px;
-            box-shadow: 0px 0px 25px #B19CD9;
-        }
+.game {
+    width: 100%;
+    max-width: 650px;
+    background: rgba(255,255,255,0.95);
+    border: 4px solid #c8a2ff;
+    border-radius: 25px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(80,40,120,0.25);
+}
 
-        h1 {
-            color: #7B5CB8;
-            font-size: 32px;
-        }
+h1 {
+    color: #7b3fb6;
+    font-size: 30px;
+}
 
-        .subtitle {
-            color: #8A70B8;
-            font-size: 17px;
-        }
+h2 {
+    color: #8e55c7;
+}
 
-        .flowers {
-            font-size: 30px;
-            margin: 15px;
-        }
+.flowers {
+    font-size: 26px;
+}
 
-        .about {
-            background-color: #F3EFFF;
-            padding: 15px;
-            border-radius: 15px;
-            color: #604080;
-            margin-top: 25px;
-        }
+.question {
+    font-size: 21px;
+    font-weight: bold;
+    margin: 25px 0 15px;
+}
 
-        #question {
-            font-size: 21px;
-            font-weight: bold;
-            color: #604080;
-            margin-top: 35px;
-        }
+input {
+    width: 90%;
+    max-width: 400px;
+    padding: 13px;
+    border: 2px solid #b58be8;
+    border-radius: 12px;
+    font-size: 16px;
+}
 
-        input {
-            width: 300px;
-            padding: 12px;
-            border: 2px solid #B19CD9;
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-        }
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin: 8px 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #9b65d6;
+    color: white;
+}
 
-        input:focus {
-            border-color: #8A2BE2;
-        }
+button:hover {
+    background: #7b3fb6;
+}
 
-        button {
-            margin-top: 20px;
-            padding: 13px 25px;
-            border: none;
-            border-radius: 15px;
-            background-color: #9370DB;
-            color: white;
-            font-size: 17px;
-            cursor: pointer;
-        }
+.skip {
+    background: #c9a7e8;
+}
 
-        button:hover {
-            background-color: #7B68EE;
-        }
+.about {
+    display: none;
+    text-align: left;
+    background: #f3e8ff;
+    border-radius: 18px;
+    padding: 18px;
+    margin-top: 20px;
+    border: 2px solid #c8a2ff;
+}
 
-        #skipButton {
-            background-color: #C8B6E2;
-            margin-left: 10px;
-        }
+.about p {
+    margin: 9px 0;
+}
 
-        #skipButton:hover {
-            background-color: #B19CD9;
-        }
+.score {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        #message {
-            font-size: 18px;
-            font-weight: bold;
-            color: #8A2BE2;
-            min-height: 25px;
-        }
+.nicknameBox {
+    display: none;
+    margin-top: 20px;
+}
 
-        #score {
-            font-size: 18px;
-            font-weight: bold;
-            color: #6A5ACD;
-            margin-top: 25px;
-        }
+.nicknameBox input {
+    margin-bottom: 10px;
+}
 
-    </style>
+.message {
+    font-size: 15px;
+    margin-top: 10px;
+    color: #8054a8;
+}
 
+.footer {
+    margin-top: 20px;
+    font-size: 13px;
+    color: #8d6ba8;
+}
+
+@media (max-width: 500px) {
+
+    .game {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .question {
+        font-size: 18px;
+    }
+
+    button {
+        width: 90%;
+        margin: 6px auto;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
@@ -118,582 +153,544 @@
         🌸 💜 🌸 💜 🌸
     </div>
 
-    <h1>Heloise's Lavender Game</h1>
+    <h1>Heloise's Lavender Game 💜</h1>
 
-    <p class="subtitle">
-        How well do you actually know me? 👀
+    <p>
+        Welcome to the extremely important test of whether
+        you actually know Heloise. 😭
     </p>
 
-    <div class="about">
+    <button onclick="toggleAbout()">
+        🌸 ABOUT ME / CLUES 🌸
+    </button>
 
-        <b>About Me</b>
+    <div class="about" id="about">
 
-        <br><br>
+        <h2>🌸 ABOUT HELOISE 🌸</h2>
 
-        I like digital art, drawing, and sketching! 🎨
+        <p>💜 <b>Name:</b> Heloise Xylia Limbona</p>
+
+        <p>🎨 <b>Likes:</b> Digital art, drawing and sketching</p>
+
+        <p>💜 <b>Favorite color:</b> Lavender</p>
+
+        <p>🌸 <b>Favorite theme:</b> Lavender and wisteria</p>
+
+        <p>🍜 <b>Favorite foods:</b> Takoyaki, Sinigang and Miso Soup</p>
+
+        <p>👀 <b>Number of exes:</b> 3</p>
+
+        <p>😂 <b>Important:</b> Some questions are traps.</p>
+
+        <p>💀 <b>Very important:</b> THINK BEFORE YOU ANSWER.</p>
+
+        <p>
+            💡 These clues are here to help you...
+            because apparently this exam is too hard. 😭
+        </p>
 
     </div>
 
-
-    <p id="question"></p>
-
+    <div class="question" id="question">
+        Loading question...
+    </div>
 
     <input
         type="text"
         id="answer"
-        placeholder="Type your answer..."
+        placeholder="Type your answer here..."
+        autocomplete="off"
     >
 
-
     <br>
-
 
     <button onclick="checkAnswer()">
         Answer 💜
     </button>
 
-
-    <button
-        id="skipButton"
-        onclick="tryToSkip()">
+    <button class="skip" onclick="skipQuestion()">
         Skip 😭
     </button>
 
-
-    <p id="message"></p>
-
-
-    <p id="score">
+    <div class="score" id="score">
         Score: 0
-    </p>
+    </div>
 
+    <div class="nicknameBox" id="nicknameBox">
 
-    <div class="flowers">
-        🌿 🌸 🌿 🌸 🌿
+        <h2>🌸 YOU FINISHED! 🌸</h2>
+
+        <p id="finalScore"></p>
+
+        <p>What should we call you? 👀</p>
+
+        <input
+            type="text"
+            id="nickname"
+            placeholder="Enter a nickname..."
+            maxlength="30"
+        >
+
+        <br>
+
+        <button onclick="sendResult()">
+            SEND MY SCORE 💜
+        </button>
+
+        <div class="message" id="sendMessage"></div>
+
+    </div>
+
+    <div class="footer">
+        🌸 Made with lavender and questionable decisions 💜
     </div>
 
 </div>
 
-
 <script>
 
-
 let score = 0;
-
-let questionNumber = 0;
-
-let skipAttempts = 0;
-
-
-/*
-    QUESTIONS
-*/
+let questionIndex = 0;
 
 const questions = [
 
     {
-        question: "What is my favorite color?",
-
+        question: "What is my favorite color? 💜",
         answers: [
             "lavender",
             "purple",
             "light purple"
         ],
-
-        canSkip: false
+        skip: false
     },
 
-
     {
-        question: "What do I like to do?",
-
+        question: "What do I like to do? 🎨",
         answers: [
-            "art",
-            "arts",
+            "digital art",
             "drawing",
             "draw",
-            "sketch",
             "sketching",
-            "sketchbook",
-            "digital art",
+            "sketch",
+            "art",
             "digital drawing",
             "digital arts"
         ],
-
-        canSkip: false
+        skip: false
     },
 
-
     {
-        question: "What is my name?",
-
+        question: "What is my name? 🌸",
         answers: [
             "heloise",
             "heloise xylia",
-            "heloise xylia limbona"
+            "heloise xylia limbona",
+            "heloise limbona"
         ],
-
-        canSkip: false
+        skip: false
     },
 
+    {
+        question: "What is the theme of this game? 💜",
+        answers: [
+            "lavender",
+            "purple",
+            "lavender wisteria",
+            "wisteria"
+        ],
+        skip: false
+    },
 
     {
-        question: "What is my favorite food?",
-
+        question: "What is my favorite food? 🍜",
         answers: [
             "takoyaki",
             "sinigang",
             "miso soup",
-            "miso",
-            "takoyaki balls"
+            "takoyaki sinigang",
+            "takoyaki miso soup",
+            "sinigang miso soup",
+            "takoyaki sinigang miso soup"
         ],
-
-        canSkip: false
+        skip: false
     },
 
-
     {
-        question: "Where do I live?",
-
+        question: "How many exes do I have? 👀",
         answers: [
-            "philippines"
+            "3",
+            "three"
         ],
-
-        canSkip: false
+        skip: false
     },
 
+    {
+        question: "Sino kinikiss ko? 💋",
+        special: "kiss",
+        skip: false
+    },
 
     {
-        question: "What kind of art do I like?",
+        question: "Do you think you actually know me? 😭",
+        answers: [
+            "yes",
+            "yeah",
+            "yep",
+            "yup"
+        ],
+        skip: false
+    },
 
+    {
+        question: "What kind of art do I like doing? 🎨",
         answers: [
             "digital art",
             "digital drawing",
             "drawing",
             "sketch",
             "sketching",
-            "digital arts"
+            "art"
         ],
-
-        canSkip: false
+        skip: false
     },
 
-
     {
-        question: "What do I like to draw in?",
-
+        question: "What food should I probably eat right now? 🍜",
         answers: [
-            "sketchbook",
-            "drawing book",
-            "notebook",
-            "digital"
+            "takoyaki",
+            "sinigang",
+            "miso soup",
+            "food"
         ],
-
-        canSkip: false
+        skip: true
     },
 
-
     {
-        question: "What is the theme of this game?",
-
-        answers: [
-            "lavender",
-            "purple",
-            "lavender theme",
-            "purple theme"
-        ],
-
-        canSkip: false
-    },
-
-
-    {
-        question: "Do you think you know me?",
-
+        question: "Do I like lavender? 💜",
         answers: [
             "yes",
             "yeah",
             "yep",
-            "of course",
-            "i do"
+            "yup"
         ],
-
-        canSkip: false
+        skip: false
     },
-
 
     {
-        question: "What flower matches this game's theme?",
-
+        question: "What is one of my favorite foods? 👀",
         answers: [
-            "wisteria",
-            "lavender"
+            "takoyaki",
+            "sinigang",
+            "miso soup"
         ],
-
-        canSkip: false
+        skip: false
     },
-
 
     {
         question: "Who is my ex? 👀",
-
-        answers: [
-            "classified",
-            "secret",
-            "idk",
-            "i don't know",
-            "none of your business"
-        ],
-
-        canSkip: true
-    },
-
-
-    {
-        question: "How many exes do I have? 😭",
-
-        answers: [
-            "3",
-            "three"
-        ],
-
-        canSkip: false
+        special: "ex",
+        skip: true
     }
 
 ];
 
+function normalize(text) {
 
-
-/*
-    SHUFFLE QUESTIONS
-*/
-
-function shuffleQuestions() {
-
-    for (
-        let i = questions.length - 1;
-        i > 0;
-        i--
-    ) {
-
-        let j =
-            Math.floor(Math.random() * (i + 1));
-
-
-        let temporary =
-            questions[i];
-
-
-        questions[i] =
-            questions[j];
-
-
-        questions[j] =
-            temporary;
-
-    }
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[.,!?]/g, "");
 
 }
-
-
-
-/*
-    SHOW QUESTION
-*/
 
 function showQuestion() {
 
     document.getElementById("question").innerText =
-        questions[questionNumber].question;
+        questions[questionIndex].question;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("answer").focus();
 
 }
 
-
-
-/*
-    CHECK ANSWER
-*/
-
 function checkAnswer() {
 
-    let answer =
+    let input = normalize(
         document.getElementById("answer").value
-        .trim()
-        .toLowerCase();
+    );
 
+    if (input === "") {
 
-    if (answer === "") {
-
-        document.getElementById("message").innerText =
-            "You gotta answer first! 😭💜";
+        alert(
+            "BRO 😭 YOU HAVE TO TYPE SOMETHING."
+        );
 
         return;
-
     }
 
+    let current = questions[questionIndex];
+
+    /* KISS QUESTION */
+
+    if (current.special === "kiss") {
+
+        /*
+           Joshua / Juswa = EX
+           Joshua Nual = CORRECT
+        */
+
+        if (
+            input === "joshua" ||
+            input === "juswa"
+        ) {
+
+            alert(
+                "EX KO NA YON 😭💀\n\n" +
+                "Joshua/Juswa?? REALLY??"
+            );
+
+            return;
+        }
+
+        /*
+           Joshua Nual is accepted.
+           Other names are also accepted.
+        */
+
+        score++;
+
+        alert(
+            "CORRECT! 💜✨\n\n" +
+            "Okayyy, I'll allow that answer. 😭"
+        );
+
+        updateScore();
+        nextQuestion();
+
+        return;
+    }
+
+    /* EX QUESTION */
+
+    if (current.special === "ex") {
+
+        alert(
+            "THIS QUESTION IS SKIPPABLE 😭💀\n\n" +
+            "I'm not exposing anybody today."
+        );
+
+        nextQuestion();
+
+        return;
+    }
 
     let correct = false;
 
-
-    /*
-        Check all possible answers
-    */
-
-    for (
-        let i = 0;
-        i < questions[questionNumber].answers.length;
-        i++
-    ) {
-
-        let possibleAnswer =
-            questions[questionNumber].answers[i]
-            .toLowerCase();
-
+    for (let answer of current.answers) {
 
         if (
-            answer.includes(possibleAnswer)
-            ||
-            possibleAnswer.includes(answer)
+            input.includes(
+                normalize(answer)
+            )
         ) {
 
             correct = true;
-
             break;
-
         }
 
     }
-
-
-
-    /*
-        CORRECT
-    */
 
     if (correct) {
 
         score++;
 
-        skipAttempts = 0;
+        alert(
+            "CORRECT!! 💜🌸\n\n" +
+            "WOW YOU ACTUALLY KNOW ME 😭"
+        );
 
-
-        document.getElementById("message").innerText =
-            "CORRECT!! 💜✨";
-
-
-        document.getElementById("score").innerText =
-            "Score: " + score;
-
-
-        /*
-            5 CORRECT
-        */
+        updateScore();
 
         if (score === 5) {
 
             alert(
-                "WOWWW!! 🌸💜\n\n" +
+                "🌸💜 WOWWW!! 💜🌸\n\n" +
                 "YOU GOT 5 CORRECT!!\n\n" +
-                "You actually know Heloise! 😂"
+                "YOU ACTUALLY KNOW HELOISE 😭✨"
             );
 
         }
 
+        nextQuestion();
 
-        questionNumber++;
+    } else {
 
-
-        /*
-            FINISHED ALL QUESTIONS
-        */
-
-        if (questionNumber >= questions.length) {
-
-            alert(
-                "YOU FINISHED THE WHOLE QUIZ! 🌸💜\n\n" +
-                "Final Score: " +
-                score +
-                "/" +
-                questions.length
-            );
-
-
-            score = 0;
-
-            questionNumber = 0;
-
-            shuffleQuestions();
-
-
-            document.getElementById("score").innerText =
-                "Score: 0";
-
-
-            document.getElementById("message").innerText =
-                "NEW ROUND! 🌸💜";
-
-        }
-
-
-        showQuestion();
-
-
-        document.getElementById("answer").value = "";
-
-    }
-
-
-    /*
-        WRONG ANSWER
-    */
-
-    else {
-
-        document.getElementById("message").innerText =
-            "Hmmmm... not quite! 😭💜 Try again!";
+        alert(
+            "WRONG ANSWER 😭💀\n\n" +
+            "USE THE ABOUT ME BUTTON FOR CLUES!"
+        );
 
     }
 
 }
 
+function skipQuestion() {
 
+    let current = questions[questionIndex];
 
-/*
-    GOOFY SKIP BUTTON
-*/
+    if (!current.skip) {
 
-function tryToSkip() {
-
-    /*
-        ONLY THE EX QUESTION
-        CAN ACTUALLY BE SKIPPED
-    */
-
-    if (questions[questionNumber].canSkip === true) {
-
-        document.getElementById("message").innerText =
-            "FINALLY! A QUESTION YOU'RE ALLOWED TO ESCAPE 😭💜";
-
-
-        questionNumber++;
-
-        skipAttempts = 0;
-
-
-        if (questionNumber >= questions.length) {
-
-            questionNumber = 0;
-
-            shuffleQuestions();
-
-        }
-
-
-        showQuestion();
-
-
-        document.getElementById("answer").value = "";
-
+        alert(
+            "NOPE 😭💀\n\n" +
+            "YOU CANNOT SKIP THIS ONE.\n" +
+            "Nice try though."
+        );
 
         return;
-
     }
 
+    alert(
+        "FINEEE 😭💜\n\n" +
+        "You may escape this question."
+    );
 
+    nextQuestion();
 
-    /*
-        NORMAL QUESTIONS
-        CANNOT BE SKIPPED
-    */
+}
 
-    skipAttempts++;
+function nextQuestion() {
 
+    questionIndex++;
 
-    if (skipAttempts === 1) {
+    if (questionIndex >= questions.length) {
 
-        document.getElementById("message").innerText =
-            "Nice try. 😭 You cannot escape.";
+        finishGame();
 
+        return;
     }
 
+    showQuestion();
 
-    else if (skipAttempts === 2) {
+}
 
-        document.getElementById("message").innerText =
-            "BRO REALLY CLICKED SKIP AGAIN 💀";
+function updateScore() {
 
+    document.getElementById("score").innerText =
+        "Score: " + score;
+
+}
+
+function finishGame() {
+
+    document.getElementById("question").style.display =
+        "none";
+
+    document.getElementById("answer").style.display =
+        "none";
+
+    document.querySelector(
+        'button[onclick="checkAnswer()"]'
+    ).style.display = "none";
+
+    document.querySelector(
+        'button[onclick="skipQuestion()"]'
+    ).style.display = "none";
+
+    document.getElementById("finalScore").innerText =
+        "You got " + score +
+        " correct! 💜🌸";
+
+    document.getElementById("nicknameBox").style.display =
+        "block";
+
+}
+
+function sendResult() {
+
+    let nickname =
+        document.getElementById("nickname")
+        .value.trim();
+
+    if (nickname === "") {
+
+        alert(
+            "You need a nickname first 😭💜"
+        );
+
+        return;
     }
 
+    let formURL =
+        "https://docs.google.com/forms/d/e/" +
+        "1FAIpQLSczbPGPA4cPLl98dQZq8XYe-" +
+        "PDYDOHOE_pHGBmFg6tTf5TmMg/formResponse";
 
-    else if (skipAttempts === 3) {
+    let formData = new FormData();
 
-        document.getElementById("message").innerText =
-            "The SKIP button is literally decorative. 💜🌸";
+    formData.append(
+        "entry.307234783",
+        nickname
+    );
 
-    }
+    formData.append(
+        "entry.1015160326",
+        score
+    );
 
+    fetch(
+        formURL,
+        {
+            method: "POST",
+            mode: "no-cors",
+            body: formData
+        }
+    );
 
-    else if (skipAttempts === 4) {
+    document.getElementById("sendMessage").innerText =
+        "SENT!! 💜🌸 Your score has been submitted!";
 
-        document.getElementById("message").innerText =
-            "STOP CLICKING IT 😭😭";
+    document.getElementById("nickname")
+        .disabled = true;
 
-    }
+}
 
+function toggleAbout() {
 
-    else if (skipAttempts === 5) {
+    let about =
+        document.getElementById("about");
 
-        document.getElementById("message").innerText =
-            "Fine. You can skip... SIKE. 😂💜";
+    if (
+        about.style.display === "block"
+    ) {
 
-    }
+        about.style.display = "none";
 
+    } else {
 
-    else {
-
-        document.getElementById("message").innerText =
-            "NOPE. STILL NOT SKIPPING. 🌸💀";
+        about.style.display = "block";
 
     }
 
 }
 
+document.getElementById("answer")
+    .addEventListener(
+        "keydown",
+        function(event) {
 
+            if (event.key === "Enter") {
 
-/*
-    PRESS ENTER TO ANSWER
-*/
+                checkAnswer();
 
-document.getElementById("answer").addEventListener(
-
-    "keypress",
-
-    function(event) {
-
-        if (event.key === "Enter") {
-
-            checkAnswer();
+            }
 
         }
-
-    }
-
-);
-
-
-
-/*
-    START GAME
-*/
-
-shuffleQuestions();
+    );
 
 showQuestion();
 
-
 </script>
 
-
 </body>
-
 </html>
